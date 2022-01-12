@@ -9,21 +9,43 @@
 /* Begin PBXBuildFile section */
 		5DC1F18C278EB2B2009A6FFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F18B278EB2B2009A6FFD /* AppDelegate.swift */; };
 		5DC1F18E278EB2B2009A6FFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F18D278EB2B2009A6FFD /* SceneDelegate.swift */; };
-		5DC1F190278EB2B2009A6FFD /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F18F278EB2B2009A6FFD /* ViewController.swift */; };
 		5DC1F193278EB2B2009A6FFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DC1F191278EB2B2009A6FFD /* Main.storyboard */; };
 		5DC1F195278EB2B5009A6FFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DC1F194278EB2B5009A6FFD /* Assets.xcassets */; };
 		5DC1F198278EB2B5009A6FFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DC1F196278EB2B5009A6FFD /* LaunchScreen.storyboard */; };
+		5DC1F1A4278EB411009A6FFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F1A3278EB411009A6FFD /* HomeViewController.swift */; };
+		5DC1F1A6278EC0AC009A6FFD /* BookTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F1A5278EC0AC009A6FFD /* BookTicketViewController.swift */; };
+		5DC1F1A9278EC2A6009A6FFD /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F1A8278EC2A6009A6FFD /* CoreDataStack.swift */; };
+		5DC1F1AE278EC895009A6FFD /* TicketDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F1AD278EC895009A6FFD /* TicketDataModel.swift */; };
+		5DC1F1B1278ED0F0009A6FFD /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F1B0278ED0F0009A6FFD /* Utils.swift */; };
+		5DC1F1B4278ED7DC009A6FFD /* BusTicket.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F1B2278ED7DC009A6FFD /* BusTicket.xcdatamodeld */; };
+		5DC1F1C2278EE858009A6FFD /* TicketItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F1C0278EE858009A6FFD /* TicketItemCell.swift */; };
+		5DC1F1C3278EE858009A6FFD /* TicketItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC1F1C1278EE858009A6FFD /* TicketItemCell.xib */; };
+		5DC1F1C8278EF492009A6FFD /* TicketHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F1C6278EF492009A6FFD /* TicketHeaderView.swift */; };
+		5DC1F1C9278EF492009A6FFD /* TicketHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC1F1C7278EF492009A6FFD /* TicketHeaderView.xib */; };
+		5DC1F1CC278EF4A8009A6FFD /* TicketFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F1CA278EF4A8009A6FFD /* TicketFooterView.swift */; };
+		5DC1F1CD278EF4A8009A6FFD /* TicketFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC1F1CB278EF4A8009A6FFD /* TicketFooterView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		5DC1F188278EB2B2009A6FFD /* BusTicket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusTicket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DC1F18B278EB2B2009A6FFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DC1F18D278EB2B2009A6FFD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		5DC1F18F278EB2B2009A6FFD /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		5DC1F192278EB2B2009A6FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		5DC1F194278EB2B5009A6FFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DC1F197278EB2B5009A6FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5DC1F199278EB2B5009A6FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5DC1F1A3278EB411009A6FFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5DC1F1A5278EC0AC009A6FFD /* BookTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTicketViewController.swift; sourceTree = "<group>"; };
+		5DC1F1A8278EC2A6009A6FFD /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		5DC1F1AD278EC895009A6FFD /* TicketDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDataModel.swift; sourceTree = "<group>"; };
+		5DC1F1B0278ED0F0009A6FFD /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		5DC1F1B3278ED7DC009A6FFD /* BusTicket.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BusTicket.xcdatamodel; sourceTree = "<group>"; };
+		5DC1F1C0278EE858009A6FFD /* TicketItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketItemCell.swift; sourceTree = "<group>"; };
+		5DC1F1C1278EE858009A6FFD /* TicketItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketItemCell.xib; sourceTree = "<group>"; };
+		5DC1F1C6278EF492009A6FFD /* TicketHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketHeaderView.swift; sourceTree = "<group>"; };
+		5DC1F1C7278EF492009A6FFD /* TicketHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketHeaderView.xib; sourceTree = "<group>"; };
+		5DC1F1CA278EF4A8009A6FFD /* TicketFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketFooterView.swift; sourceTree = "<group>"; };
+		5DC1F1CB278EF4A8009A6FFD /* TicketFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TicketFooterView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +78,98 @@
 		5DC1F18A278EB2B2009A6FFD /* BusTicket */ = {
 			isa = PBXGroup;
 			children = (
+				5DC1F1AF278ED0E3009A6FFD /* Utils */,
+				5DC1F1A7278EC28E009A6FFD /* CoreData */,
+				5DC1F1A1278EB3CB009A6FFD /* ViewModel */,
+				5DC1F1A0278EB3A9009A6FFD /* View */,
+				5DC1F19F278EB3A2009A6FFD /* Model */,
 				5DC1F18B278EB2B2009A6FFD /* AppDelegate.swift */,
 				5DC1F18D278EB2B2009A6FFD /* SceneDelegate.swift */,
-				5DC1F18F278EB2B2009A6FFD /* ViewController.swift */,
 				5DC1F191278EB2B2009A6FFD /* Main.storyboard */,
 				5DC1F194278EB2B5009A6FFD /* Assets.xcassets */,
 				5DC1F196278EB2B5009A6FFD /* LaunchScreen.storyboard */,
 				5DC1F199278EB2B5009A6FFD /* Info.plist */,
+				5DC1F1B2278ED7DC009A6FFD /* BusTicket.xcdatamodeld */,
 			);
 			path = BusTicket;
+			sourceTree = "<group>";
+		};
+		5DC1F19F278EB3A2009A6FFD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5DC1F1A0278EB3A9009A6FFD /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5DC1F1C5278EF303009A6FFD /* TicketFooterView */,
+				5DC1F1C4278EF2ED009A6FFD /* TicketHeaderView */,
+				5DC1F1BF278EE83D009A6FFD /* TicketItemCell */,
+				5DC1F1A2278EB3D9009A6FFD /* ViewController */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		5DC1F1A1278EB3CB009A6FFD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				5DC1F1AD278EC895009A6FFD /* TicketDataModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		5DC1F1A2278EB3D9009A6FFD /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				5DC1F1A3278EB411009A6FFD /* HomeViewController.swift */,
+				5DC1F1A5278EC0AC009A6FFD /* BookTicketViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		5DC1F1A7278EC28E009A6FFD /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				5DC1F1A8278EC2A6009A6FFD /* CoreDataStack.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		5DC1F1AF278ED0E3009A6FFD /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				5DC1F1B0278ED0F0009A6FFD /* Utils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		5DC1F1BF278EE83D009A6FFD /* TicketItemCell */ = {
+			isa = PBXGroup;
+			children = (
+				5DC1F1C0278EE858009A6FFD /* TicketItemCell.swift */,
+				5DC1F1C1278EE858009A6FFD /* TicketItemCell.xib */,
+			);
+			path = TicketItemCell;
+			sourceTree = "<group>";
+		};
+		5DC1F1C4278EF2ED009A6FFD /* TicketHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				5DC1F1C6278EF492009A6FFD /* TicketHeaderView.swift */,
+				5DC1F1C7278EF492009A6FFD /* TicketHeaderView.xib */,
+			);
+			path = TicketHeaderView;
+			sourceTree = "<group>";
+		};
+		5DC1F1C5278EF303009A6FFD /* TicketFooterView */ = {
+			isa = PBXGroup;
+			children = (
+				5DC1F1CA278EF4A8009A6FFD /* TicketFooterView.swift */,
+				5DC1F1CB278EF4A8009A6FFD /* TicketFooterView.xib */,
+			);
+			path = TicketFooterView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,7 +230,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DC1F198278EB2B5009A6FFD /* LaunchScreen.storyboard in Resources */,
+				5DC1F1CD278EF4A8009A6FFD /* TicketFooterView.xib in Resources */,
+				5DC1F1C9278EF492009A6FFD /* TicketHeaderView.xib in Resources */,
 				5DC1F195278EB2B5009A6FFD /* Assets.xcassets in Resources */,
+				5DC1F1C3278EE858009A6FFD /* TicketItemCell.xib in Resources */,
 				5DC1F193278EB2B2009A6FFD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -137,9 +245,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DC1F190278EB2B2009A6FFD /* ViewController.swift in Sources */,
+				5DC1F1A9278EC2A6009A6FFD /* CoreDataStack.swift in Sources */,
+				5DC1F1C2278EE858009A6FFD /* TicketItemCell.swift in Sources */,
 				5DC1F18C278EB2B2009A6FFD /* AppDelegate.swift in Sources */,
+				5DC1F1C8278EF492009A6FFD /* TicketHeaderView.swift in Sources */,
 				5DC1F18E278EB2B2009A6FFD /* SceneDelegate.swift in Sources */,
+				5DC1F1A4278EB411009A6FFD /* HomeViewController.swift in Sources */,
+				5DC1F1A6278EC0AC009A6FFD /* BookTicketViewController.swift in Sources */,
+				5DC1F1AE278EC895009A6FFD /* TicketDataModel.swift in Sources */,
+				5DC1F1B4278ED7DC009A6FFD /* BusTicket.xcdatamodeld in Sources */,
+				5DC1F1CC278EF4A8009A6FFD /* TicketFooterView.swift in Sources */,
+				5DC1F1B1278ED0F0009A6FFD /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +332,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -271,7 +387,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -341,6 +457,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		5DC1F1B2278ED7DC009A6FFD /* BusTicket.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				5DC1F1B3278ED7DC009A6FFD /* BusTicket.xcdatamodel */,
+			);
+			currentVersion = 5DC1F1B3278ED7DC009A6FFD /* BusTicket.xcdatamodel */;
+			path = BusTicket.xcdatamodeld;
+			sourceTree = SOURCE_ROOT;
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 5DC1F180278EB2B1009A6FFD /* Project object */;
 }
