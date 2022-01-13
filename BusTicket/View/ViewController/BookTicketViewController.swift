@@ -19,11 +19,17 @@ class BookTicketViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        requestPermission()
         registerCells()
         setNavBar()
         ticketDataModel.delegate = self
         ticketDataModel.fetchTicketInfo()
         canUserBookTicket = ticketDataModel.canUserBookTicket()
+    }
+
+    func requestPermission() {
+        NotificationManager.shared.requestAuthorization { _ in
+        }
     }
 
     func sendNotification(date:Date, remindBefore: Int) {
@@ -48,11 +54,18 @@ class BookTicketViewController: UIViewController {
 
     func bookTicket(date:Date, remindBefore: Int) {
         ticketDataModel.bookTicket(ticketId: selectedTicket, bookedDate: date, remindBefore: remindBefore)
+        showTicketBookedAlert()
         sendNotification(date: date, remindBefore: remindBefore)
     }
 
     func showAlreadyBookedAlert() {
         let alert = UIAlertController(title: "Booked", message: "Ticket Already Booked", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+
+    func showTicketBookedAlert() {
+        let alert = UIAlertController(title: "Booked", message: "Congrats \(displayName) You have successfully booked a ticket", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -62,7 +75,7 @@ extension BookTicketViewController: TicketDataModelDelegate {
     func dataChanged() {
         canUserBookTicket = ticketDataModel.canUserBookTicket()
         if let ticket = ticketDataModel.getTickets() {
-           tickets = ticket
+            tickets = ticket
             collectionView.reloadData()
         }
     }
@@ -101,7 +114,7 @@ extension BookTicketViewController: UICollectionViewDataSource {
                 ofKind: kind, withReuseIdentifier: "TicketFooterView", for: indexPath) as? TicketFooterView {
                 reusableView = footerView
                 footerView.delegate = self
-                footerView.setData(selectedId: selectedTicket)
+                footerView.setData(selectedId: selectedTicket, canUserBookTicket:canUserBookTicket)
             }
         }
         return reusableView

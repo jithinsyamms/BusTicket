@@ -13,12 +13,12 @@ class DateViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var pickerView: UIPickerView!
 
-    var remindMeBeofre: [String] = ["1 Min", "1 Min", "3 Min","4 Min"]
-    var remindMeMinutes: [Int] = [1, 2, 3, 4]
+    var remindMeBeofre: [String] = ["5 Min", "15 Min", "25 Min","45 Min"]
+    var remindMeMinutes: [Int] = [5, 15, 25, 45]
     var selectedRow = 0
 
     // Can book ticket for buses departs after 15 mins
-    private var minTimeToBookTicket = 5
+    private var minTimeToBookTicket = 60
 
     override func viewDidLoad() {
         super.viewDidLoad()
