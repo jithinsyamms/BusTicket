@@ -158,9 +158,6 @@
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="g9a-3E-Sbl">
                                 <rect key="frame" x="47" y="44" width="320" height="448"/>
                                 <color key="tintColor" name="AccentColor"/>
-                                <connections>
-                                    <action selector="dateSelected:" destination="TqP-8M-tJW" eventType="valueChanged" id="USd-rO-haj"/>
-                                </connections>
                             </datePicker>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Xx-uc-PK5" userLabel="Picker">
                                 <rect key="frame" x="8" y="497" width="398" height="448"/>

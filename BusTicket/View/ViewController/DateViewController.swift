@@ -13,26 +13,21 @@ class DateViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var pickerView: UIPickerView!
 
-    var remindMeBeofre: [String] = ["15 Min", "30 Min", "45 min","1 hour"]
-    var remindMeMinutes: [Int] = [15, 30, 60, 240]
-    var selectedRow = -1
-    var selectedDate = Date()
+    var remindMeBeofre: [String] = ["1 Min", "1 Min", "3 Min","4 Min"]
+    var remindMeMinutes: [Int] = [1, 2, 3, 4]
+    var selectedRow = 0
+
     // Can book ticket for buses departs after 15 mins
-    private var minTimeToBookTicket = 120
+    private var minTimeToBookTicket = 5
 
     override func viewDidLoad() {
         super.viewDidLoad()
         datePicker.datePickerMode  = .dateAndTime
+        datePicker.locale = Locale.current
+        datePicker.timeZone = TimeZone.autoupdatingCurrent
         let date = Calendar.current.date(byAdding: .minute, value: minTimeToBookTicket, to: Date())
         datePicker.minimumDate = date
-
     }
-
-    @IBAction func dateSelected(_ sender: Any) {
-        selectedDate = datePicker.date
-    }
-
-
 }
 
 extension DateViewController: UIPickerViewDelegate, UIPickerViewDataSource {
@@ -51,6 +46,8 @@ extension DateViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedRow = row
     }
+
+
 }
 
 

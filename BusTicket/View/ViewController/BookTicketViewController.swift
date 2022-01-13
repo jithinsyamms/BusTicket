@@ -148,11 +148,12 @@ extension BookTicketViewController: TicketFooterProtocol {
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let dateController = storyboard.instantiateViewController(withIdentifier: "DateViewController") as!DateViewController
-        dateController.preferredContentSize = CGSize(width: view.bounds.width,height: view.bounds.height / 3)
+        dateController.preferredContentSize = CGSize(width: view.bounds.width,height: view.bounds.height / 2)
         let alertView = UIAlertController(title: "Select Date", message: "", preferredStyle: UIAlertController.Style.alert)
         alertView.setValue(dateController, forKey: "contentViewController")
         alertView.addAction(UIAlertAction(title: "Book Ticket", style:.default, handler: { action in
-            self.bookTicket(date: dateController.selectedDate, remindBefore: dateController.remindMeMinutes[dateController.selectedRow])
+            let date = dateController.datePicker.date
+            self.bookTicket(date: date, remindBefore: dateController.remindMeMinutes[dateController.selectedRow])
         }))
         alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alertView, animated: true)

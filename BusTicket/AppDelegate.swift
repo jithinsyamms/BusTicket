@@ -37,7 +37,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
         withCompletionHandler completionHandler: (UNNotificationPresentationOptions) -> Void) {
-          completionHandler([.alert, .badge, .sound])
+        completionHandler([.alert, .badge, .sound])
     }
 }
 

@@ -25,10 +25,13 @@ class NotificationManager {
 
     func scheduleNotification(displayName: String, bookedDate: Date, remindBefore: Int) {
 
+        let triggerIntervel = findtriggerTime(bookedDate: bookedDate, remindBefore: remindBefore)
+        print(triggerIntervel)
+
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = "Bus Ticket Alert"
         notificationContent.body = "Hi %@, Your bus will leave at %@ please leave now to make it in time"
-        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 10,
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: triggerIntervel,
                                                         repeats: false)
         let request = UNNotificationRequest(identifier: "jithin",
                                             content: notificationContent,
@@ -39,5 +42,11 @@ class NotificationManager {
                 print("Notification Error: ", error)
             }
         }
+    }
+
+    func findtriggerTime(bookedDate: Date, remindBefore: Int) -> TimeInterval {
+
+        let reminderDate = Calendar.current.date(byAdding: .minute, value: -remindBefore, to: bookedDate)!
+        return reminderDate.timeIntervalSinceNow
     }
 }
