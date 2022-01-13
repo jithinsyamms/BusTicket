@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		5D197F0F27904512009DE317 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D197F0E27904512009DE317 /* DateViewController.swift */; };
+		5D197F1227908D5F009DE317 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D197F1127908D5F009DE317 /* NotificationManager.swift */; };
 		5DC1F18C278EB2B2009A6FFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F18B278EB2B2009A6FFD /* AppDelegate.swift */; };
 		5DC1F18E278EB2B2009A6FFD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F18D278EB2B2009A6FFD /* SceneDelegate.swift */; };
 		5DC1F193278EB2B2009A6FFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DC1F191278EB2B2009A6FFD /* Main.storyboard */; };
@@ -29,6 +30,7 @@
 
 /* Begin PBXFileReference section */
 		5D197F0E27904512009DE317 /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
+		5D197F1127908D5F009DE317 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		5DC1F188278EB2B2009A6FFD /* BusTicket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusTicket.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DC1F18B278EB2B2009A6FFD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5DC1F18D278EB2B2009A6FFD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D197F1027908D4B009DE317 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				5D197F1127908D5F009DE317 /* NotificationManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		5DC1F17F278EB2B1009A6FFD = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +90,7 @@
 		5DC1F18A278EB2B2009A6FFD /* BusTicket */ = {
 			isa = PBXGroup;
 			children = (
+				5D197F1027908D4B009DE317 /* Manager */,
 				5DC1F1AF278ED0E3009A6FFD /* Utils */,
 				5DC1F1A7278EC28E009A6FFD /* CoreData */,
 				5DC1F1A1278EB3CB009A6FFD /* ViewModel */,
@@ -254,6 +265,7 @@
 				5DC1F1C8278EF492009A6FFD /* TicketHeaderView.swift in Sources */,
 				5D197F0F27904512009DE317 /* DateViewController.swift in Sources */,
 				5DC1F18E278EB2B2009A6FFD /* SceneDelegate.swift in Sources */,
+				5D197F1227908D5F009DE317 /* NotificationManager.swift in Sources */,
 				5DC1F1A4278EB411009A6FFD /* HomeViewController.swift in Sources */,
 				5DC1F1A6278EC0AC009A6FFD /* BookTicketViewController.swift in Sources */,
 				5DC1F1AE278EC895009A6FFD /* TicketDataModel.swift in Sources */,

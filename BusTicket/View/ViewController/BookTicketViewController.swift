@@ -15,6 +15,8 @@ class BookTicketViewController: UIViewController {
     private var numberOfTicketsInRow = 4
     var selectedTicket  = 0
 
+    let userNotificationCenter = UNUserNotificationCenter.current()
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,8 +24,17 @@ class BookTicketViewController: UIViewController {
         setNavBar()
         ticketDataModel.delegate = self
         ticketDataModel.fetchTicketInfo()
-
     }
+
+    func sendNotification(date:Date, remindBefore: Int) {
+        NotificationManager.shared.requestAuthorization { granted in
+            if granted {
+                NotificationManager.shared.scheduleNotification(displayName: "Jithin",
+                                                                bookedDate: date, remindBefore: remindBefore)
+            }
+        }
+    }
+
     func registerCells(){
         collectionView.register(UINib(nibName: "TicketItemCell", bundle: nil), forCellWithReuseIdentifier: "TicketItemCell")
         collectionView.register(UINib(nibName: "TicketHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TicketHeaderView")
@@ -33,6 +44,10 @@ class BookTicketViewController: UIViewController {
     func setNavBar() {
         navigationController?.navigationBar.barTintColor = UIColor.purple
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
+    }
+
+    func bookTicket(date:Date, remindBefore: Int) {
+        sendNotification(date: date, remindBefore: remindBefore)
     }
 }
 
@@ -45,9 +60,6 @@ extension BookTicketViewController: TicketDataModelDelegate {
     }
 }
 
-extension BookTicketViewController: UICollectionViewDelegate {
-
-}
 
 extension BookTicketViewController: UICollectionViewDataSource {
 
@@ -135,11 +147,13 @@ extension BookTicketViewController: TicketFooterProtocol {
     func bookButtonPressed() {
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "DateViewController") as!DateViewController
-        vc.preferredContentSize = CGSize(width: view.bounds.width,height: view.bounds.height / 3)
+        let dateController = storyboard.instantiateViewController(withIdentifier: "DateViewController") as!DateViewController
+        dateController.preferredContentSize = CGSize(width: view.bounds.width,height: view.bounds.height / 3)
         let alertView = UIAlertController(title: "Select Date", message: "", preferredStyle: UIAlertController.Style.alert)
-        alertView.setValue(vc, forKey: "contentViewController")
-        alertView.addAction(UIAlertAction(title: "Book Ticket", style:.default, handler: nil))
+        alertView.setValue(dateController, forKey: "contentViewController")
+        alertView.addAction(UIAlertAction(title: "Book Ticket", style:.default, handler: { action in
+            self.bookTicket(date: dateController.selectedDate, remindBefore: dateController.remindMeMinutes[dateController.selectedRow])
+        }))
         alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         self.present(alertView, animated: true)
     }

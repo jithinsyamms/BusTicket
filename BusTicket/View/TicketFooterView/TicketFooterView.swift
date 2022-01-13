@@ -23,7 +23,8 @@ class TicketFooterView: UICollectionReusableView {
 
     func setData(selectedId: Int) {
         bookButton.isEnabled = selectedId > 0 ? true : false
-        bookButton.backgroundColor = selectedId > 0 ? UIColor.init(named: "AccentColor") : UIColor.systemGray 
+        bookButton.alpha = selectedId > 0 ? 1 : 0.2
+
     }
 
     @IBAction func buttonPresssed(_ sender: Any) {
