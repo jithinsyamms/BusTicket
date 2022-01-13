@@ -49,7 +49,7 @@ class TicketDataModel {
         fetchRequest.predicate = predicate
         if let ticketInfo = try? coreDataStack.getManagedContext().fetch(fetchRequest).first {
             ticketInfo.isBooked = true
-            ticketInfo.bookdedData = bookedDate
+            ticketInfo.bookdedDate = bookedDate
             ticketInfo.remindBefore = Int16(remindBefore)
             ticketInfo.bookedUserId = TicketDataModel.uniqueuserId
 
