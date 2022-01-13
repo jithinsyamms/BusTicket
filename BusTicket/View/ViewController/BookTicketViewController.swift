@@ -14,9 +14,8 @@ class BookTicketViewController: UIViewController {
     private var tickets:[TicketInfo]?
     private var numberOfTicketsInRow = 4
     var selectedTicket  = 0
-
-    let userNotificationCenter = UNUserNotificationCenter.current()
-
+    private var displayName = "User"
+    private var canUserBookTicket = true
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,18 +23,19 @@ class BookTicketViewController: UIViewController {
         setNavBar()
         ticketDataModel.delegate = self
         ticketDataModel.fetchTicketInfo()
+        canUserBookTicket = ticketDataModel.canUserBookTicket()
     }
 
     func sendNotification(date:Date, remindBefore: Int) {
         NotificationManager.shared.requestAuthorization { granted in
             if granted {
-                NotificationManager.shared.scheduleNotification(displayName: "Jithin",
+                NotificationManager.shared.scheduleNotification(displayName: self.displayName,
                                                                 bookedDate: date, remindBefore: remindBefore)
             }
         }
     }
 
-    func registerCells(){
+    func registerCells() {
         collectionView.register(UINib(nibName: "TicketItemCell", bundle: nil), forCellWithReuseIdentifier: "TicketItemCell")
         collectionView.register(UINib(nibName: "TicketHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TicketHeaderView")
         collectionView.register(UINib(nibName: "TicketFooterView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "TicketFooterView")
@@ -47,19 +47,19 @@ class BookTicketViewController: UIViewController {
     }
 
     func bookTicket(date:Date, remindBefore: Int) {
+        ticketDataModel.bookTicket(ticketId: selectedTicket, bookedDate: date, remindBefore: remindBefore)
         sendNotification(date: date, remindBefore: remindBefore)
     }
 }
 
 extension BookTicketViewController: TicketDataModelDelegate {
-    func dataLoaded() {
+    func dataChanged() {
         if let ticket = ticketDataModel.getTickets() {
            tickets = ticket
             collectionView.reloadData()
         }
     }
 }
-
 
 extension BookTicketViewController: UICollectionViewDataSource {
 
@@ -71,6 +71,7 @@ extension BookTicketViewController: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "TicketItemCell", for: indexPath) as? TicketItemCell {
             cell.setData(ticketInfo: tickets?[indexPath.row], selectedTicketId: selectedTicket)
+            cell.isUserInteractionEnabled = canUserBookTicket ? true : false
             return cell
         }
         return UICollectionViewCell()
@@ -101,8 +102,13 @@ extension BookTicketViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if let ticketSelected = tickets?[indexPath.row]{
-            if selectedTicket != Int(ticketSelected.ticketId) {
+
+        if let ticketSelected = tickets?[indexPath.row] {
+            if selectedTicket == ticketSelected.ticketId {
+                selectedTicket = 0
+                collectionView.reloadData()
+            }
+            else if !ticketSelected.isBooked {
                 selectedTicket = Int(ticketSelected.ticketId)
                 collectionView.reloadData()
             }

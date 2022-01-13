@@ -10,23 +10,25 @@ import CoreData
 
 
 protocol TicketDataModelDelegate: AnyObject {
-    func dataLoaded()
+    func dataChanged()
 }
 
 class TicketDataModel {
 
-    let totalTicketsCount = 21
+    static let uniqueuserId = "User-1001"
 
+    let totalTicketsCount = 21
     var coreDataStack: CoreDataStack!
     var tickets: [TicketInfo]?
-    weak var delegate:TicketDataModelDelegate?
+    weak var delegate: TicketDataModelDelegate?
+
 
     init() {
         coreDataStack = CoreDataStack.shared
     }
 
-    func fetchTicketInfo(){
-        if getTicketsCount() == 0 {
+    func fetchTicketInfo() {
+        if getTicketsCount() <= 0 {
             loadRandomTicketInfo()
         }
 
@@ -35,10 +37,30 @@ class TicketDataModel {
         fetchRequest.sortDescriptors = sortDescriptors
         do {
             tickets = try coreDataStack.getManagedContext().fetch(fetchRequest)
-            delegate?.dataLoaded()
+            delegate?.dataChanged()
         } catch let error {
             print(error)
         }
+    }
+
+    func bookTicket(ticketId: Int, bookedDate: Date, remindBefore: Int) {
+        let fetchRequest: NSFetchRequest<TicketInfo> = TicketInfo.fetchRequest()
+        let predicate = NSPredicate(format: "ticketId == %d", ticketId)
+        fetchRequest.predicate = predicate
+        if let ticketInfo = try? coreDataStack.getManagedContext().fetch(fetchRequest).first {
+            ticketInfo.isBooked = true
+            ticketInfo.bookdedData = bookedDate
+            ticketInfo.remindBefore = Int16(remindBefore)
+            ticketInfo.bookedUserId = TicketDataModel.uniqueuserId
+
+            do {
+                try coreDataStack.getManagedContext().save()
+                delegate?.dataChanged()
+            } catch let error {
+                print(error)
+            }
+        }
+
     }
 
     func getTicketsCount() -> Int {
@@ -49,20 +71,6 @@ class TicketDataModel {
            return 0
         }
     }
-
-//    func checkUserInfoExists() -> Bool {
-//
-//        let request:NSFetchRequest<UserInfo> = UserInfo.fetchRequest()
-//        let context = coreDataStack.getManagedContext()
-//        do {
-//            if try context.fetch(request).first != nil{
-//                return true
-//            }
-//        } catch let error {
-//            print(error)
-//        }
-//        return false
-//    }
 
     func loadRandomTicketInfo(){
         let context = coreDataStack.getManagedContext()
@@ -77,5 +85,15 @@ class TicketDataModel {
 
     func getTickets() -> [TicketInfo]? {
        return tickets
+    }
+
+    func canUserBookTicket() -> Bool {
+        let fetchRequest: NSFetchRequest<TicketInfo> = TicketInfo.fetchRequest()
+        let predicate = NSPredicate(format: "bookedUserId == %@", TicketDataModel.uniqueuserId)
+        fetchRequest.predicate = predicate
+        if (try? coreDataStack.getManagedContext().fetch(fetchRequest).first) != nil {
+            return false
+        }
+        return true
     }
 }

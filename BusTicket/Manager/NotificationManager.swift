@@ -11,10 +11,12 @@ import UIKit
 class NotificationManager {
 
     static let shared = NotificationManager()
+    static let identifier = "TicketBooking"
 
     private init() {
 
     }
+
 
     func requestAuthorization(completion: @escaping  (Bool) -> Void) {
         UNUserNotificationCenter.current()
@@ -33,13 +35,13 @@ class NotificationManager {
         notificationContent.body = "Hi %@, Your bus will leave at %@ please leave now to make it in time"
         let trigger = UNTimeIntervalNotificationTrigger(timeInterval: triggerIntervel,
                                                         repeats: false)
-        let request = UNNotificationRequest(identifier: "jithin",
+        let request = UNNotificationRequest(identifier: NotificationManager.identifier,
                                             content: notificationContent,
                                             trigger: trigger)
 
         UNUserNotificationCenter.current().add(request) { (error) in
             if let error = error {
-                print("Notification Error: ", error)
+                print("Not able to schedule notification", error)
             }
         }
     }

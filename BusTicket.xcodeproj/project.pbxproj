@@ -14,7 +14,6 @@
 		5DC1F193278EB2B2009A6FFD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DC1F191278EB2B2009A6FFD /* Main.storyboard */; };
 		5DC1F195278EB2B5009A6FFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DC1F194278EB2B5009A6FFD /* Assets.xcassets */; };
 		5DC1F198278EB2B5009A6FFD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DC1F196278EB2B5009A6FFD /* LaunchScreen.storyboard */; };
-		5DC1F1A4278EB411009A6FFD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F1A3278EB411009A6FFD /* HomeViewController.swift */; };
 		5DC1F1A6278EC0AC009A6FFD /* BookTicketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F1A5278EC0AC009A6FFD /* BookTicketViewController.swift */; };
 		5DC1F1A9278EC2A6009A6FFD /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F1A8278EC2A6009A6FFD /* CoreDataStack.swift */; };
 		5DC1F1AE278EC895009A6FFD /* TicketDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F1AD278EC895009A6FFD /* TicketDataModel.swift */; };
@@ -38,7 +37,6 @@
 		5DC1F194278EB2B5009A6FFD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DC1F197278EB2B5009A6FFD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5DC1F199278EB2B5009A6FFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5DC1F1A3278EB411009A6FFD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5DC1F1A5278EC0AC009A6FFD /* BookTicketViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookTicketViewController.swift; sourceTree = "<group>"; };
 		5DC1F1A8278EC2A6009A6FFD /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		5DC1F1AD278EC895009A6FFD /* TicketDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TicketDataModel.swift; sourceTree = "<group>"; };
@@ -136,7 +134,6 @@
 		5DC1F1A2278EB3D9009A6FFD /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				5DC1F1A3278EB411009A6FFD /* HomeViewController.swift */,
 				5DC1F1A5278EC0AC009A6FFD /* BookTicketViewController.swift */,
 				5D197F0E27904512009DE317 /* DateViewController.swift */,
 			);
@@ -266,7 +263,6 @@
 				5D197F0F27904512009DE317 /* DateViewController.swift in Sources */,
 				5DC1F18E278EB2B2009A6FFD /* SceneDelegate.swift in Sources */,
 				5D197F1227908D5F009DE317 /* NotificationManager.swift in Sources */,
-				5DC1F1A4278EB411009A6FFD /* HomeViewController.swift in Sources */,
 				5DC1F1A6278EC0AC009A6FFD /* BookTicketViewController.swift in Sources */,
 				5DC1F1AE278EC895009A6FFD /* TicketDataModel.swift in Sources */,
 				5DC1F1B4278ED7DC009A6FFD /* BusTicket.xcdatamodeld in Sources */,
