@@ -88,12 +88,17 @@ class TicketDataModel {
     }
 
     func canUserBookTicket() -> Bool {
-        let fetchRequest: NSFetchRequest<TicketInfo> = TicketInfo.fetchRequest()
-        let predicate = NSPredicate(format: "bookedUserId == %@", TicketDataModel.uniqueuserId)
-        fetchRequest.predicate = predicate
-        if (try? coreDataStack.getManagedContext().fetch(fetchRequest).first) != nil {
+        if getUserTicket() != nil {
             return false
         }
         return true
     }
+
+    func getUserTicket() -> TicketInfo? {
+        let fetchRequest: NSFetchRequest<TicketInfo> = TicketInfo.fetchRequest()
+        let predicate = NSPredicate(format: "bookedUserId == %@", TicketDataModel.uniqueuserId)
+        fetchRequest.predicate = predicate
+        return try? coreDataStack.getManagedContext().fetch(fetchRequest).first
+    }
+
 }

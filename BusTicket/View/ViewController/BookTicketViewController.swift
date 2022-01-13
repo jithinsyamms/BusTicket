@@ -50,10 +50,17 @@ class BookTicketViewController: UIViewController {
         ticketDataModel.bookTicket(ticketId: selectedTicket, bookedDate: date, remindBefore: remindBefore)
         sendNotification(date: date, remindBefore: remindBefore)
     }
+
+    func showAlreadyBookedAlert() {
+        let alert = UIAlertController(title: "Booked", message: "Ticket Already Booked", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
 }
 
 extension BookTicketViewController: TicketDataModelDelegate {
     func dataChanged() {
+        canUserBookTicket = ticketDataModel.canUserBookTicket()
         if let ticket = ticketDataModel.getTickets() {
            tickets = ticket
             collectionView.reloadData()
@@ -71,7 +78,6 @@ extension BookTicketViewController: UICollectionViewDataSource {
         if let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "TicketItemCell", for: indexPath) as? TicketItemCell {
             cell.setData(ticketInfo: tickets?[indexPath.row], selectedTicketId: selectedTicket)
-            cell.isUserInteractionEnabled = canUserBookTicket ? true : false
             return cell
         }
         return UICollectionViewCell()
@@ -102,6 +108,11 @@ extension BookTicketViewController: UICollectionViewDataSource {
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+
+        if !canUserBookTicket {
+          showAlreadyBookedAlert()
+          return
+        }
 
         if let ticketSelected = tickets?[indexPath.row] {
             if selectedTicket == ticketSelected.ticketId {
