@@ -21,7 +21,7 @@ class TicketItemCell: UICollectionViewCell {
 
     }
 
-    func setData(ticketInfo:TicketInfo?) {
+    func setData(ticketInfo:TicketInfo?, selectedTicketId:Int) {
 
 
         guard let ticket = ticketInfo else {
@@ -29,6 +29,8 @@ class TicketItemCell: UICollectionViewCell {
         }
         if ticket.isBooked {
             ticketView.backgroundColor = UIColor.systemOrange
+        } else if ticket.ticketId == selectedTicketId {
+            ticketView.backgroundColor = UIColor.systemBlue
         } else {
             ticketView.backgroundColor = UIColor.systemGreen
         }

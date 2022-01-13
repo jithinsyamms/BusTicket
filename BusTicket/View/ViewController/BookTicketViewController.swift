@@ -13,6 +13,7 @@ class BookTicketViewController: UIViewController {
     var ticketDataModel = TicketDataModel()
     private var tickets:[TicketInfo]?
     private var numberOfTicketsInRow = 4
+    var selectedTicket  = 0
 
 
     override func viewDidLoad() {
@@ -49,6 +50,7 @@ extension BookTicketViewController: UICollectionViewDelegate {
 }
 
 extension BookTicketViewController: UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         tickets?.count ?? 0
     }
@@ -56,7 +58,7 @@ extension BookTicketViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "TicketItemCell", for: indexPath) as? TicketItemCell {
-            cell.setData(ticketInfo: tickets?[indexPath.row])
+            cell.setData(ticketInfo: tickets?[indexPath.row], selectedTicketId: selectedTicket)
             return cell
         }
         return UICollectionViewCell()
@@ -79,10 +81,22 @@ extension BookTicketViewController: UICollectionViewDataSource {
             if let footerView = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind, withReuseIdentifier: "TicketFooterView", for: indexPath) as? TicketFooterView {
                 reusableView = footerView
+                footerView.delegate = self
+                footerView.setData(selectedId: selectedTicket)
             }
         }
         return reusableView
     }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if let ticketSelected = tickets?[indexPath.row]{
+            if selectedTicket != Int(ticketSelected.ticketId) {
+                selectedTicket = Int(ticketSelected.ticketId)
+                collectionView.reloadData()
+            }
+        }
+    }
+
 }
 extension BookTicketViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView,
@@ -106,7 +120,7 @@ extension BookTicketViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView, layout
                                collectionViewLayout: UICollectionViewLayout,
                                referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: 100)
+        return CGSize(width: collectionView.frame.width, height: 80)
     }
 
     public func collectionView(_ collectionView: UICollectionView,
@@ -114,5 +128,19 @@ extension BookTicketViewController: UICollectionViewDelegateFlowLayout {
                                referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width,
                       height: 100)
+    }
+}
+
+extension BookTicketViewController: TicketFooterProtocol {
+    func bookButtonPressed() {
+
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyboard.instantiateViewController(withIdentifier: "DateViewController") as!DateViewController
+        vc.preferredContentSize = CGSize(width: view.bounds.width,height: view.bounds.height / 3)
+        let alertView = UIAlertController(title: "Select Date", message: "", preferredStyle: UIAlertController.Style.alert)
+        alertView.setValue(vc, forKey: "contentViewController")
+        alertView.addAction(UIAlertAction(title: "Book Ticket", style:.default, handler: nil))
+        alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alertView, animated: true)
     }
 }

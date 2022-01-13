@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -146,6 +147,71 @@
             </objects>
             <point key="canvasLocation" x="-517.39130434782612" y="78.348214285714278"/>
         </scene>
+        <!--Date View Controller-->
+        <scene sceneID="Zb6-hF-YHE">
+            <objects>
+                <viewController storyboardIdentifier="DateViewController" id="TqP-8M-tJW" customClass="DateViewController" customModule="BusTicket" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jI3-yt-gbX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="5" translatesAutoresizingMaskIntoConstraints="NO" id="g9a-3E-Sbl">
+                                <rect key="frame" x="47" y="44" width="320" height="448"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <connections>
+                                    <action selector="dateSelected:" destination="TqP-8M-tJW" eventType="valueChanged" id="USd-rO-haj"/>
+                                </connections>
+                            </datePicker>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Xx-uc-PK5" userLabel="Picker">
+                                <rect key="frame" x="8" y="497" width="398" height="448"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RemInd Me Before:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="luL-J6-lr7">
+                                        <rect key="frame" x="0.0" y="217" width="204" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" name="AccentColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView contentMode="scaleToFill" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="cqQ-U0-pyN">
+                                        <rect key="frame" x="194" y="116" width="204" height="216"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="TqP-8M-tJW" id="0L2-Nc-ujt"/>
+                                            <outlet property="delegate" destination="TqP-8M-tJW" id="zND-ag-gN8"/>
+                                        </connections>
+                                    </pickerView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" name="AccentColor"/>
+                                <constraints>
+                                    <constraint firstItem="luL-J6-lr7" firstAttribute="centerY" secondItem="3Xx-uc-PK5" secondAttribute="centerY" id="0t7-tD-9Va"/>
+                                    <constraint firstItem="luL-J6-lr7" firstAttribute="trailing" secondItem="cqQ-U0-pyN" secondAttribute="leading" constant="10" id="P8H-sJ-VEy"/>
+                                    <constraint firstItem="cqQ-U0-pyN" firstAttribute="width" secondItem="luL-J6-lr7" secondAttribute="width" id="TdY-3Y-YFK"/>
+                                    <constraint firstItem="cqQ-U0-pyN" firstAttribute="centerY" secondItem="3Xx-uc-PK5" secondAttribute="centerY" id="XrZ-DQ-X5b"/>
+                                    <constraint firstAttribute="trailing" secondItem="cqQ-U0-pyN" secondAttribute="trailing" id="bdw-7p-9Eh"/>
+                                    <constraint firstItem="luL-J6-lr7" firstAttribute="leading" secondItem="3Xx-uc-PK5" secondAttribute="leading" id="btr-nQ-Tms"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ULJ-tn-9L6"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="3Xx-uc-PK5" firstAttribute="height" secondItem="jI3-yt-gbX" secondAttribute="height" multiplier="0.5" id="2ID-CG-YfK"/>
+                            <constraint firstItem="g9a-3E-Sbl" firstAttribute="centerX" secondItem="jI3-yt-gbX" secondAttribute="centerX" id="7jU-bV-AGc"/>
+                            <constraint firstItem="ULJ-tn-9L6" firstAttribute="trailing" secondItem="3Xx-uc-PK5" secondAttribute="trailing" constant="8" id="7rc-9u-34S"/>
+                            <constraint firstItem="3Xx-uc-PK5" firstAttribute="top" secondItem="g9a-3E-Sbl" secondAttribute="bottom" constant="5" id="A1X-wP-ZwB"/>
+                            <constraint firstItem="3Xx-uc-PK5" firstAttribute="leading" secondItem="ULJ-tn-9L6" secondAttribute="leading" constant="8" id="QSo-eU-aWg"/>
+                            <constraint firstItem="g9a-3E-Sbl" firstAttribute="height" secondItem="jI3-yt-gbX" secondAttribute="height" multiplier="0.5" id="dD9-9T-Ahz"/>
+                            <constraint firstItem="g9a-3E-Sbl" firstAttribute="top" secondItem="ULJ-tn-9L6" secondAttribute="top" id="gCc-da-jL2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="datePicker" destination="g9a-3E-Sbl" id="oto-lT-xjZ"/>
+                        <outlet property="pickerView" destination="cqQ-U0-pyN" id="vJe-Fw-aKo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ivE-aX-YKA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-505.79710144927537" y="916.74107142857133"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="PS3-Qq-9Fv">
             <objects>
@@ -166,6 +232,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.57919406890000003" green="0.1280144453" blue="0.57268613580000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
