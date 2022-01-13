@@ -31,6 +31,8 @@ class TicketDataModel {
         }
 
         let fetchRequest:NSFetchRequest<TicketInfo> = TicketInfo.fetchRequest()
+        let sortDescriptors = [NSSortDescriptor(key: "ticketId", ascending: true)]
+        fetchRequest.sortDescriptors = sortDescriptors
         do {
             tickets = try coreDataStack.getManagedContext().fetch(fetchRequest)
             delegate?.dataLoaded()

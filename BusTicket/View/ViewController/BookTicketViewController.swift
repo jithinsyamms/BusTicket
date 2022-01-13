@@ -11,36 +11,18 @@ class BookTicketViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     var ticketDataModel = TicketDataModel()
-    var tickets:[TicketInfo]?
+    private var tickets:[TicketInfo]?
+    private var numberOfTicketsInRow = 4
 
-    private var horizontalSpacing:CGFloat = 0
-    private var verticalSpacing:CGFloat = 0
-    private var sectionInsets:UIEdgeInsets!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         registerCells()
         setNavBar()
-        setDimension()
         ticketDataModel.delegate = self
         ticketDataModel.fetchTicketInfo()
 
     }
-
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        setDimension()
-    }
-
-    func setDimension() {
-        horizontalSpacing = collectionView.bounds.width / 4.0
-        verticalSpacing = horizontalSpacing / 2
-        sectionInsets = UIEdgeInsets(
-            top: 0.0,
-            left: horizontalSpacing,
-            bottom: 0.0,
-            right: horizontalSpacing)
-    }
-
     func registerCells(){
         collectionView.register(UINib(nibName: "TicketItemCell", bundle: nil), forCellWithReuseIdentifier: "TicketItemCell")
         collectionView.register(UINib(nibName: "TicketHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TicketHeaderView")
@@ -106,23 +88,20 @@ extension BookTicketViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView,
                                layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.bounds.width/8.0
-        let height = width
-        return CGSize(width: width, height: height)
+
+            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
+            let totalSpace = flowLayout.sectionInset.left
+                + flowLayout.sectionInset.right
+                + (flowLayout.minimumInteritemSpacing * CGFloat(numberOfTicketsInRow - 1))
+
+            let width = Int((collectionView.bounds.width - totalSpace) / CGFloat(numberOfTicketsInRow))
+            let height = Int(Double(width) * 0.7)
+
+
+            return CGSize(width: width, height:height )
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        sectionInsets.left
-    }
-    func collectionView( _ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                         insetForSectionAt section: Int) -> UIEdgeInsets {
-        sectionInsets
-    }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
-                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return verticalSpacing
-    }
 
     public func collectionView(_ collectionView: UICollectionView, layout
                                collectionViewLayout: UICollectionViewLayout,
