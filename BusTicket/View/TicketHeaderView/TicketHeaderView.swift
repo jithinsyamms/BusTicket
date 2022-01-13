@@ -12,5 +12,4 @@ class TicketHeaderView: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
 }

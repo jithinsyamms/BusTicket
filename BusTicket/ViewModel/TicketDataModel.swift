@@ -8,7 +8,6 @@
 import Foundation
 import CoreData
 
-
 protocol TicketDataModelDelegate: AnyObject {
     func dataChanged()
 }
@@ -22,7 +21,6 @@ class TicketDataModel {
     var tickets: [TicketInfo]?
     weak var delegate: TicketDataModelDelegate?
 
-
     init() {
         coreDataStack = CoreDataStack.shared
     }
@@ -32,7 +30,7 @@ class TicketDataModel {
             loadRandomTicketInfo()
         }
 
-        let fetchRequest:NSFetchRequest<TicketInfo> = TicketInfo.fetchRequest()
+        let fetchRequest: NSFetchRequest<TicketInfo> = TicketInfo.fetchRequest()
         let sortDescriptors = [NSSortDescriptor(key: "ticketId", ascending: true)]
         fetchRequest.sortDescriptors = sortDescriptors
         do {
@@ -64,7 +62,7 @@ class TicketDataModel {
     }
 
     func getTicketsCount() -> Int {
-        let request:NSFetchRequest<TicketInfo> = TicketInfo.fetchRequest()
+        let request: NSFetchRequest<TicketInfo> = TicketInfo.fetchRequest()
         if let totalTickets = try? coreDataStack.getManagedContext().fetch(request) {
             return totalTickets.count
         } else {
@@ -72,7 +70,7 @@ class TicketDataModel {
         }
     }
 
-    func loadRandomTicketInfo(){
+    func loadRandomTicketInfo() {
         let context = coreDataStack.getManagedContext()
         for ticketId in 1 ... totalTicketsCount {
             let ticketInfo = TicketInfo(context: context)

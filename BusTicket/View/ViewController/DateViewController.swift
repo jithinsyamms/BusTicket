@@ -9,11 +9,10 @@ import UIKit
 
 class DateViewController: UIViewController {
 
-
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var pickerView: UIPickerView!
 
-    var remindMeBeofre: [String] = ["5 Min", "15 Min", "25 Min","45 Min"]
+    var remindMeBeofre: [String] = ["5 Min", "15 Min", "25 Min", "45 Min"]
     var remindMeMinutes: [Int] = [5, 15, 25, 45]
     var selectedRow = 0
 
@@ -46,8 +45,4 @@ extension DateViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedRow = row
     }
-
-
 }
-
-

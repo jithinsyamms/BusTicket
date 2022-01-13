@@ -11,7 +11,7 @@ class BookTicketViewController: UIViewController {
 
     @IBOutlet weak var collectionView: UICollectionView!
     var ticketDataModel = TicketDataModel()
-    private var tickets:[TicketInfo]?
+    private var tickets: [TicketInfo]?
     private var numberOfTicketsInRow = 4
     var selectedTicket  = 0
     private var displayName = "User"
@@ -32,7 +32,7 @@ class BookTicketViewController: UIViewController {
         }
     }
 
-    func sendNotification(date:Date, remindBefore: Int) {
+    func sendNotification(date: Date, remindBefore: Int) {
         NotificationManager.shared.requestAuthorization { granted in
             if granted {
                 NotificationManager.shared.scheduleNotification(displayName: self.displayName,
@@ -42,9 +42,14 @@ class BookTicketViewController: UIViewController {
     }
 
     func registerCells() {
-        collectionView.register(UINib(nibName: "TicketItemCell", bundle: nil), forCellWithReuseIdentifier: "TicketItemCell")
-        collectionView.register(UINib(nibName: "TicketHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "TicketHeaderView")
-        collectionView.register(UINib(nibName: "TicketFooterView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "TicketFooterView")
+        collectionView.register(UINib(nibName: "TicketItemCell", bundle: nil),
+                                forCellWithReuseIdentifier: "TicketItemCell")
+        collectionView.register(UINib(nibName: "TicketHeaderView", bundle: nil),
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: "TicketHeaderView")
+        collectionView.register(UINib(nibName: "TicketFooterView", bundle: nil),
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: "TicketFooterView")
     }
 
     func setNavBar() {
@@ -52,20 +57,23 @@ class BookTicketViewController: UIViewController {
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white]
     }
 
-    func bookTicket(date:Date, remindBefore: Int) {
+    func bookTicket(date: Date, remindBefore: Int) {
         ticketDataModel.bookTicket(ticketId: selectedTicket, bookedDate: date, remindBefore: remindBefore)
         showTicketBookedAlert()
         sendNotification(date: date, remindBefore: remindBefore)
     }
 
     func showAlreadyBookedAlert() {
-        let alert = UIAlertController(title: "Booked", message: "Ticket Already Booked", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Booked", message: "Ticket Already Booked",
+                                      preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 
     func showTicketBookedAlert() {
-        let alert = UIAlertController(title: "Booked", message: "Congrats \(displayName) You have successfully booked a ticket", preferredStyle: UIAlertController.Style.alert)
+        let alert = UIAlertController(title: "Booked",
+                                      message: "Congrats \(displayName) You have successfully booked a ticket",
+                                      preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
@@ -87,7 +95,8 @@ extension BookTicketViewController: UICollectionViewDataSource {
         tickets?.count ?? 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: "TicketItemCell", for: indexPath) as? TicketItemCell {
             cell.setData(ticketInfo: tickets?[indexPath.row], selectedTicketId: selectedTicket)
@@ -106,15 +115,13 @@ extension BookTicketViewController: UICollectionViewDataSource {
                                 withReuseIdentifier: "TicketHeaderView",
                                 for: indexPath) as? TicketHeaderView {
                 reusableView = headerView
-
-
             }
         } else if kind == UICollectionView.elementKindSectionFooter {
             if let footerView = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind, withReuseIdentifier: "TicketFooterView", for: indexPath) as? TicketFooterView {
                 reusableView = footerView
                 footerView.delegate = self
-                footerView.setData(selectedId: selectedTicket, canUserBookTicket:canUserBookTicket)
+                footerView.setData(selectedId: selectedTicket, canUserBookTicket: canUserBookTicket)
             }
         }
         return reusableView
@@ -131,8 +138,7 @@ extension BookTicketViewController: UICollectionViewDataSource {
             if selectedTicket == ticketSelected.ticketId {
                 selectedTicket = 0
                 collectionView.reloadData()
-            }
-            else if !ticketSelected.isBooked {
+            } else if !ticketSelected.isBooked {
                 selectedTicket = Int(ticketSelected.ticketId)
                 collectionView.reloadData()
             }
@@ -144,20 +150,16 @@ extension BookTicketViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView,
                                layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-            let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout
-            let totalSpace = flowLayout.sectionInset.left
-                + flowLayout.sectionInset.right
-                + (flowLayout.minimumInteritemSpacing * CGFloat(numberOfTicketsInRow - 1))
-
+            var totalSpace: CGFloat = 0
+            if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
+                    totalSpace = flowLayout.sectionInset.left
+                    + flowLayout.sectionInset.right
+                    + (flowLayout.minimumInteritemSpacing * CGFloat(numberOfTicketsInRow - 1))
+            }
             let width = Int((collectionView.bounds.width - totalSpace) / CGFloat(numberOfTicketsInRow))
             let height = Int(Double(width) * 0.7)
-
-
-            return CGSize(width: width, height:height )
+            return CGSize(width: width, height: height )
     }
-
-
 
     public func collectionView(_ collectionView: UICollectionView, layout
                                collectionViewLayout: UICollectionViewLayout,
@@ -177,15 +179,19 @@ extension BookTicketViewController: TicketFooterProtocol {
     func bookButtonPressed() {
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let dateController = storyboard.instantiateViewController(withIdentifier: "DateViewController") as!DateViewController
-        dateController.preferredContentSize = CGSize(width: view.bounds.width,height: view.bounds.height / 2)
-        let alertView = UIAlertController(title: "Select Date", message: "", preferredStyle: UIAlertController.Style.alert)
-        alertView.setValue(dateController, forKey: "contentViewController")
-        alertView.addAction(UIAlertAction(title: "Book Ticket", style:.default, handler: { action in
-            let date = dateController.datePicker.date
-            self.bookTicket(date: date, remindBefore: dateController.remindMeMinutes[dateController.selectedRow])
-        }))
-        alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-        self.present(alertView, animated: true)
+        if let dateController = storyboard.instantiateViewController(withIdentifier:
+                                                                        "DateViewController") as? DateViewController {
+            dateController.preferredContentSize = CGSize(width: view.bounds.width, height: view.bounds.height / 2)
+            let alertView = UIAlertController(title: "Select Date", message: "",
+                                              preferredStyle: UIAlertController.Style.alert)
+            alertView.setValue(dateController, forKey: "contentViewController")
+            alertView.addAction(UIAlertAction(title: "Book Ticket",
+                                              style: .default, handler: { _ in
+                let date = dateController.datePicker.date
+                self.bookTicket(date: date, remindBefore: dateController.remindMeMinutes[dateController.selectedRow])
+            }))
+            alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alertView, animated: true)
+        }
     }
 }

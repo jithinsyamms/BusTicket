@@ -21,7 +21,7 @@ class TicketFooterView: UICollectionReusableView {
         bookButton.layer.cornerRadius = 10
     }
 
-    func setData(selectedId: Int, canUserBookTicket:Bool) {
+    func setData(selectedId: Int, canUserBookTicket: Bool) {
         bookButton.isEnabled = selectedId > 0 && canUserBookTicket ? true : false
         bookButton.alpha = selectedId > 0 && canUserBookTicket ? 1 : 0.2
 

@@ -12,7 +12,6 @@ class TicketItemCell: UICollectionViewCell {
     @IBOutlet weak var rootView: UIView!
     @IBOutlet weak var ticketView: UIView!
     @IBOutlet weak var ticketLabel: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         ticketView.layer.cornerRadius = 8
@@ -20,10 +19,7 @@ class TicketItemCell: UICollectionViewCell {
         ticketView.layer.borderColor = UIColor.gray.cgColor
 
     }
-
-    func setData(ticketInfo:TicketInfo?, selectedTicketId:Int) {
-
-
+    func setData(ticketInfo: TicketInfo?, selectedTicketId: Int) {
         guard let ticket = ticketInfo else {
             return
         }
