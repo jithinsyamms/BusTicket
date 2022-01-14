@@ -34,7 +34,7 @@ class CoreDataStack {
         do {
             try storeContainer.viewContext.save()
         } catch let error as NSError {
-            print("Unresolved error \(error), \(error.userInfo)")
+            print("Error \(error), \(error.userInfo)")
         }
     }
 

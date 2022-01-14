@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D07558E2791432F00B55356 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D07558D2791432F00B55356 /* Constants.swift */; };
 		5D197F0F27904512009DE317 /* DateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D197F0E27904512009DE317 /* DateViewController.swift */; };
 		5D197F1227908D5F009DE317 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D197F1127908D5F009DE317 /* NotificationManager.swift */; };
 		5DC1F18C278EB2B2009A6FFD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1F18B278EB2B2009A6FFD /* AppDelegate.swift */; };
@@ -28,6 +29,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5D07558D2791432F00B55356 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5D197F0E27904512009DE317 /* DateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateViewController.swift; sourceTree = "<group>"; };
 		5D197F1127908D5F009DE317 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		5DC1F188278EB2B2009A6FFD /* BusTicket.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BusTicket.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +63,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D07558C2791431D00B55356 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				5D07558D2791432F00B55356 /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		5D197F1027908D4B009DE317 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +98,7 @@
 		5DC1F18A278EB2B2009A6FFD /* BusTicket */ = {
 			isa = PBXGroup;
 			children = (
+				5D07558C2791431D00B55356 /* Constants */,
 				5D197F1027908D4B009DE317 /* Manager */,
 				5DC1F1AF278ED0E3009A6FFD /* Utils */,
 				5DC1F1A7278EC28E009A6FFD /* CoreData */,
@@ -284,6 +295,7 @@
 				5D197F0F27904512009DE317 /* DateViewController.swift in Sources */,
 				5DC1F18E278EB2B2009A6FFD /* SceneDelegate.swift in Sources */,
 				5D197F1227908D5F009DE317 /* NotificationManager.swift in Sources */,
+				5D07558E2791432F00B55356 /* Constants.swift in Sources */,
 				5DC1F1A6278EC0AC009A6FFD /* BookTicketViewController.swift in Sources */,
 				5DC1F1AE278EC895009A6FFD /* TicketDataModel.swift in Sources */,
 				5DC1F1B4278ED7DC009A6FFD /* BusTicket.xcdatamodeld in Sources */,

@@ -12,6 +12,7 @@ class TicketItemCell: UICollectionViewCell {
     @IBOutlet weak var rootView: UIView!
     @IBOutlet weak var ticketView: UIView!
     @IBOutlet weak var ticketLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         ticketView.layer.cornerRadius = 8

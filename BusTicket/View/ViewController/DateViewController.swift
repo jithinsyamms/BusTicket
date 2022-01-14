@@ -12,10 +12,7 @@ class DateViewController: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var pickerView: UIPickerView!
 
-    var remindMeBeofre: [String] = ["5 Min", "15 Min", "25 Min", "45 Min"]
-    var remindMeMinutes: [Int] = [5, 15, 25, 45]
     var selectedRow = 0
-
     // Can book ticket for buses departs after 15 mins
     private var minTimeToBookTicket = 60
 
@@ -35,11 +32,11 @@ extension DateViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        remindMeBeofre.count
+        Constants.remindMeBeofre.count
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        remindMeBeofre[row]
+        Constants.remindMeBeofre[row]
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
@@ -48,7 +45,7 @@ extension DateViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int,
                     forComponent component: Int) -> NSAttributedString? {
-        return NSAttributedString(string: remindMeBeofre[row], attributes:
+        return NSAttributedString(string: Constants.remindMeBeofre[row], attributes:
                                     [NSAttributedString.Key.foregroundColor: UIColor.purple])
     }
 }

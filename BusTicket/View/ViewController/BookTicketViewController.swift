@@ -12,9 +12,7 @@ class BookTicketViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var ticketDataModel = TicketDataModel()
     private var tickets: [TicketInfo]?
-    private var numberOfTicketsInRow = 4
-    var selectedTicket  = 0
-    private var displayName = "User"
+    private var selectedTicket  = 0
     private var canUserBookTicket = true
 
     override func viewDidLoad() {
@@ -35,7 +33,7 @@ class BookTicketViewController: UIViewController {
     func sendNotification(date: Date, remindBefore: Int) {
         NotificationManager.shared.requestAuthorization { granted in
             if granted {
-                NotificationManager.shared.scheduleNotification(displayName: self.displayName,
+                NotificationManager.shared.scheduleNotification(displayName: Constants.displayName,
                                                                 bookedDate: date, remindBefore: remindBefore)
             }
         }
@@ -74,8 +72,8 @@ class BookTicketViewController: UIViewController {
     }
 
     func showTicketBookedAlert() {
-        let alert = UIAlertController(title: "Booked",
-                                      message: "Congrats \(displayName) You have successfully booked a ticket",
+        let message = "Congrats \(Constants.displayName) You have successfully booked a ticket"
+        let alert = UIAlertController(title: "Booked", message: message,
                                       preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
@@ -115,8 +113,8 @@ extension BookTicketViewController: UICollectionViewDataSource {
 
         if kind == UICollectionView.elementKindSectionHeader {
             if let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                withReuseIdentifier: "TicketHeaderView",
-                                for: indexPath) as? TicketHeaderView {
+                                                                                withReuseIdentifier: "TicketHeaderView",
+                                                                                for: indexPath) as? TicketHeaderView {
                 reusableView = headerView
             }
         } else if kind == UICollectionView.elementKindSectionFooter {
@@ -133,8 +131,8 @@ extension BookTicketViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         if !canUserBookTicket {
-          showAlreadyBookedAlert()
-          return
+            showAlreadyBookedAlert()
+            return
         }
 
         if let ticketSelected = tickets?[indexPath.row] {
@@ -153,19 +151,19 @@ extension BookTicketViewController: UICollectionViewDelegateFlowLayout {
     public func collectionView(_ collectionView: UICollectionView,
                                layout collectionViewLayout: UICollectionViewLayout,
                                sizeForItemAt indexPath: IndexPath) -> CGSize {
-            var totalSpace: CGFloat = 0
-            if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
-                    totalSpace = flowLayout.sectionInset.left
-                    + flowLayout.sectionInset.right
-                    + (flowLayout.minimumInteritemSpacing * CGFloat(numberOfTicketsInRow - 1))
-            }
-            let width = Int((collectionView.bounds.width - totalSpace) / CGFloat(numberOfTicketsInRow))
-            let height = Int(Double(width) * 0.7)
-            return CGSize(width: width, height: height )
+        var totalSpace: CGFloat = 0
+        if let flowLayout = collectionViewLayout as? UICollectionViewFlowLayout {
+            totalSpace = flowLayout.sectionInset.left
+                + flowLayout.sectionInset.right
+                + (flowLayout.minimumInteritemSpacing * CGFloat(Constants.numberOfTicketsInRow - 1))
+        }
+        let width = Int((collectionView.bounds.width - totalSpace) / CGFloat(Constants.numberOfTicketsInRow))
+        let height = Int(Double(width) * 0.7)
+        return CGSize(width: width, height: height )
     }
 
     public func collectionView(_ collectionView: UICollectionView, layout
-                               collectionViewLayout: UICollectionViewLayout,
+                                collectionViewLayout: UICollectionViewLayout,
                                referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: 80)
     }
@@ -174,7 +172,7 @@ extension BookTicketViewController: UICollectionViewDelegateFlowLayout {
                                layout collectionViewLayout: UICollectionViewLayout,
                                referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.frame.width,
-                      height: 100)
+                      height: 80)
     }
 }
 
@@ -190,9 +188,9 @@ extension BookTicketViewController: TicketFooterProtocol {
             alertView.setValue(dateController, forKey: "contentViewController")
             alertView.addAction(UIAlertAction(title: "Book Ticket",
                                               style: .default, handler: { _ in
-                let date = dateController.datePicker.date
-                self.bookTicket(date: date, remindBefore: dateController.remindMeMinutes[dateController.selectedRow])
-            }))
+                                                let date = dateController.datePicker.date
+                                                self.bookTicket(date: date, remindBefore: Constants.remindMeMinutes[dateController.selectedRow])
+                                              }))
             alertView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
             self.present(alertView, animated: true)
         }

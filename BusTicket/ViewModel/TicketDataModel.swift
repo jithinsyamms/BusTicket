@@ -14,9 +14,6 @@ protocol TicketDataModelDelegate: AnyObject {
 
 class TicketDataModel {
 
-    static let uniqueuserId = "User-1001"
-
-    let totalTicketsCount = 21
     var coreDataStack: CoreDataStack!
     var tickets: [TicketInfo]?
     weak var delegate: TicketDataModelDelegate?
@@ -50,7 +47,7 @@ class TicketDataModel {
             ticketInfo.isBooked = true
             ticketInfo.bookdedDate = bookedDate
             ticketInfo.remindBefore = Int16(remindBefore)
-            ticketInfo.bookedUserId = TicketDataModel.uniqueuserId
+            ticketInfo.bookedUserId = Constants.uniqueUserID
             do {
                 try coreDataStack.getManagedContext().save()
                 delegate?.dataChanged()
@@ -74,7 +71,7 @@ class TicketDataModel {
 
     func loadRandomTicketInfo() {
         let context = coreDataStack.getManagedContext()
-        for ticketId in 1 ... totalTicketsCount {
+        for ticketId in 1 ... Constants.totalTicketsCount {
             let ticketInfo = TicketInfo(context: context)
             ticketInfo.ticketId = Int16(ticketId)
             ticketInfo.isBooked = Utils.getRandomBool()
@@ -96,7 +93,7 @@ class TicketDataModel {
 
     func getUserTicket() -> TicketInfo? {
         let fetchRequest: NSFetchRequest<TicketInfo> = TicketInfo.fetchRequest()
-        let predicate = NSPredicate(format: "bookedUserId == %@", TicketDataModel.uniqueuserId)
+        let predicate = NSPredicate(format: "bookedUserId == %@", Constants.uniqueUserID)
         fetchRequest.predicate = predicate
         return try? coreDataStack.getManagedContext().fetch(fetchRequest).first
     }
