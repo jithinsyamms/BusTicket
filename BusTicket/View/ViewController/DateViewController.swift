@@ -45,4 +45,10 @@ extension DateViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectedRow = row
     }
+
+    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int,
+                    forComponent component: Int) -> NSAttributedString? {
+        return NSAttributedString(string: remindMeBeofre[row], attributes:
+                                    [NSAttributedString.Key.foregroundColor: UIColor.purple])
+    }
 }

@@ -41,7 +41,8 @@ class TicketDataModel {
         }
     }
 
-    func bookTicket(ticketId: Int, bookedDate: Date, remindBefore: Int) {
+    func bookTicket(ticketId: Int, bookedDate: Date, remindBefore: Int, completion: (Bool) -> Void ) {
+
         let fetchRequest: NSFetchRequest<TicketInfo> = TicketInfo.fetchRequest()
         let predicate = NSPredicate(format: "ticketId == %d", ticketId)
         fetchRequest.predicate = predicate
@@ -50,12 +51,13 @@ class TicketDataModel {
             ticketInfo.bookdedDate = bookedDate
             ticketInfo.remindBefore = Int16(remindBefore)
             ticketInfo.bookedUserId = TicketDataModel.uniqueuserId
-
             do {
                 try coreDataStack.getManagedContext().save()
                 delegate?.dataChanged()
+                completion(true)
             } catch let error {
                 print(error)
+                completion(false)
             }
         }
 

@@ -58,9 +58,12 @@ class BookTicketViewController: UIViewController {
     }
 
     func bookTicket(date: Date, remindBefore: Int) {
-        ticketDataModel.bookTicket(ticketId: selectedTicket, bookedDate: date, remindBefore: remindBefore)
-        showTicketBookedAlert()
-        sendNotification(date: date, remindBefore: remindBefore)
+        ticketDataModel.bookTicket(ticketId: selectedTicket, bookedDate: date, remindBefore: remindBefore) { success in
+            if success {
+                showTicketBookedAlert()
+                sendNotification(date: date, remindBefore: remindBefore)
+            }
+        }
     }
 
     func showAlreadyBookedAlert() {
